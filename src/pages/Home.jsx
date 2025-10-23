@@ -21,7 +21,6 @@ export default function Home() {
             <div className="w-full max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-8">
                 <CommonQuestions />
             </div>
-            {/* Pricing pulled out to allow wider overlap positioning */}
             <Pricing />
             <Footer />
         </>

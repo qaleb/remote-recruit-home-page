@@ -40,7 +40,6 @@ export default function Reveal({
         const node = ref.current;
         if (!node) return;
 
-        // Respect reduced motion
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
             setShown(true);

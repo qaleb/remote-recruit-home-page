@@ -3,9 +3,10 @@ import xIcon from '../assets/cross-icon.svg';
 
 const pricingPlans = [
     {
+        id: 'free',
         plan: 'Free',
         price: 0,
-        period: 'Basic',
+        period: 'Basic', // label shown under plan name
         features: [
             { name: '1 Active Job', available: true },
             { name: 'Basic List Placement', available: true },
@@ -14,6 +15,7 @@ const pricingPlans = [
         ],
     },
     {
+        id: 'premium',
         plan: 'Premium',
         price: 79.99,
         period: 'Per Month',

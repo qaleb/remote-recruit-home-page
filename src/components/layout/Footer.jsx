@@ -21,33 +21,41 @@ const socials = [
 
 export default function Footer() {
     return (
-        <section className="relative w-full min-h-[520px] overflow-hidden -mt-[160px] md:-mt-[200px] pt-[160px] md:pt-[200px]">
+        <footer className="relative w-full min-h-[520px] overflow-hidden -mt-[160px] md:-mt-[200px] pt-[160px] md:pt-[200px]" aria-labelledby="footer-brand">
             <div
                 aria-hidden
                 className="absolute inset-x-0 top-0 w-screen left-1/2 -translate-x-1/2 min-h-[520px] bg-top bg-no-repeat bg-cover"
                 style={{ backgroundImage: `url(${background})` }}
             />
-            {/* Content */}
-            <div className="relative z-10 w-full max-w-[1440px] mx-auto h-full flex flex-col justify-end">
-                <div className="flex flex-1 items-between gap-10 px-4 md:px-12 pb-10">
+            {/* Full Logo + Social Media Links */}
+            <div className="absolute bottom-24 md:bottom-36 inset-x-0">
+                <div className="relative z-10 w-full max-w-[1140px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 px-4 md:px-12">
                     <Reveal variant="fade" delay={50} className="inline-flex">
-                        <img src={logo} alt="RemoteRecruit logo" className="w-40 md:w-48 h-auto" />
+                        <img id="footer-brand" src={logo} alt="RemoteRecruit logo" className="w-40 md:w-48 h-auto" />
                     </Reveal>
-                    <div className="flex items-center gap-3">
+                    <ul className="flex items-center" aria-label="Social media links">
                         {socials.map((s, idx) => (
-                            <Reveal key={s.alt} variant="scale-in" delay={idx * 80} className="inline-flex">
-                                <a
-                                    href={s.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={`Visit us on ${s.alt}`}
-                                    className="p-2 rounded-full hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white transition"
-                                >
-                                    <img src={s.src} alt={s.alt} className="w-7 h-auto opacity-75 hover:opacity-100 transition" />
-                                </a>
-                            </Reveal>
+                            <li key={s.alt}>
+                                <Reveal variant="scale-in" delay={idx * 80} className="inline-flex">
+                                    <a
+                                        href={s.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`Visit us on ${s.alt}`}
+                                        className="p-2 rounded-full hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white transition"
+                                    >
+                                        <img src={s.src} alt={s.alt} className="w-7 h-auto opacity-75 hover:opacity-100 transition" />
+                                    </a>
+                                </Reveal>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
+                </div>
+            </div>
+            {/* Full-width divider */}
+            <div className="absolute bottom-16 inset-x-0" aria-hidden>
+                <div className="mx-auto w-full">
+                    <div className="h-px w-full bg-[#8BA3CC]/50" />
                 </div>
             </div>
             {/* Bottom small icon */}
@@ -56,6 +64,6 @@ export default function Footer() {
                     <img src={logoIcon} alt="RemoteRecruit icon" className="w-10 h-auto opacity-90" />
                 </Reveal>
             </div>
-        </section>
+        </footer>
     );
 }

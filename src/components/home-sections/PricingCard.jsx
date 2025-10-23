@@ -1,75 +1,91 @@
 import React from 'react';
 import { checkIcon, xIcon } from '../../data/pricingPlans';
+import premiumIcon from '../../assets/premium-icon.svg';
 import Button from '../ui/Button';
 
-// Adapts to new pricingPlans data shape:
-// { plan: string, price: number, period: string, features: [{ name, available }] }
+// Small utility for a feature line
+function FeatureLine({ feature }) {
+    const { name, available } = feature;
+    return (
+        <li className="flex items-start gap-3" aria-label={name}>
+            <span
+                className={`flex h-5 w-5 items-center justify-center rounded-full shadow-sm ${available
+                    ? 'bg-gradient-to-br from-[#52B4DA] to-[#1E3E85]'
+                    : 'bg-[#C5C6D0]'
+                    }`}
+            >
+                <img
+                    src={available ? checkIcon : xIcon}
+                    alt={available ? 'Available' : 'Not available'}
+                    className={available ? 'h-3.5 w-3.5' : 'h-3 w-3'}
+                />
+            </span>
+            <span
+                className={`text-[16px] leading-6 font-medium ${available ? 'text-[#323445]' : 'text-[#808191]'
+                    }`}
+            >
+                {name}
+            </span>
+        </li>
+    );
+}
+
 export default function PricingCard({ plan }) {
     const { plan: planName, price, period, features } = plan;
-    // Use price to infer highlight (previously passed explicitly)
-    const highlight = price > 0;
+    const isPremium = price > 0;
 
     return (
-        <div
-            className={`relative flex flex-col justify-between w-full max-w-[500px] bg-white rounded-[28px] shadow-[0_30px_100px_-15px_rgba(49,89,211,0.12)] p-8 md:p-10 transition-transform hover:-translate-y-2 hover:shadow-[0_40px_120px_-15px_rgba(49,89,211,0.15)] ${highlight ? 'ring-2 ring-[#52B4DA]/40' : ''
-                }`}
+        <article
+            className={`relative mx-auto w-full max-w-[500px] rounded-[28px] bg-white shadow-lg px-8 pt-8 pb-10 flex flex-col gap-6 transition-transform hover:-translate-y-2 hover:shadow-[0_40px_120px_-15px_rgba(49,89,211,0.15)]`}
+            aria-labelledby={`plan-${planName.toLowerCase()}-title`}
         >
-            {/* Top Info */}
-            <div className="flex flex-col md:flex-row gap-8">
-                {/* Icon box */}
-                <div className="w-[160px] h-[180px] bg-[#ECF2FF] rounded-[16px] flex items-center justify-center">
-                    <div className="text-center">
-                        <p
-                            className={`text-[32px] font-semibold leading-[45px] ${highlight
-                                    ? 'bg-gradient-to-r from-[#52B4DA] to-[#1E3E85] bg-clip-text text-transparent'
-                                    : 'text-[#52B4DA]'
-                                }`}
-                        >
-                            {planName}
-                        </p>
-                        {/* Secondary label: show pricing or period */}
-                        <p className="text-[20px] leading-[35px] font-medium text-[#11142D]/60">
-                            {price === 0 ? 'Free' : `$${price.toFixed(2)}/mo`}
-                        </p>
-                        {highlight && (
-                            <div className="mt-4 inline-flex items-center px-4 h-[44px] bg-[#C2EEFF] rounded-[22px] text-[16px] font-semibold tracking-wide text-[#11142D] shadow">
-                                Premium
-                            </div>
-                        )}
-                        <p
-                            className={`mt-2 text-[16px] ${highlight ? 'text-[#11142D]/70' : 'text-[#11142D]/50'}`}
-                        >
-                            {period}
-                        </p>
-                    </div>
-                </div>
-
-                {/* Features */}
-                <ul className="flex-1 space-y-5">
-                    {features.map((f, i) => (
-                        <li
-                            key={i}
-                            className="flex items-start gap-3 text-[16px] leading-[24px] font-medium"
-                        >
-                            <span
-                                className={`w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center ${f.available
-                                        ? 'bg-gradient-to-r from-[#52B4DA] to-[#1E3E85]'
-                                        : 'bg-gradient-to-r from-[#A2A3B8] to-[#808191]'
-                                    }`}
-                            >
+            <div className="grid grid-cols-[160px_1fr] gap-8">
+                <div className="relative h-[180px] w-[160px] rounded-[16px] bg-[#ECF2FF] flex flex-col items-center justify-center">
+                    {isPremium && (
+                        <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center gap-2 h-11 px-4 bg-[#C2EEFF] rounded-full shadow-[0px_4px_4px_rgba(67,145,193,0.21)]">
+                            <span className="relative flex h-9 w-9 items-center justify-center">
+                                <span className="absolute inset-0 rounded-full bg-white" />
                                 <img
-                                    src={f.available ? checkIcon : xIcon}
-                                    alt={f.available ? 'Included' : 'Not included'}
-                                    className="w-3 h-3"
+                                    src={premiumIcon}
+                                    alt="Premium plan icon"
+                                    className="relative h-7 w-5"
                                 />
                             </span>
-                            <span
-                                className={`${f.available ? 'text-[#323445]' : 'text-[#808191]'
-                                    }`}
-                            >
-                                {f.name}
+                            <span className="font-semibold text-[16px] leading-5 tracking-[0.4px] text-[#11142D]">
+                                Premium
                             </span>
-                        </li>
+                        </div>
+                    )}
+                    {/* Price or Plan Name */}
+                    {isPremium ? (
+                        <>
+                            <p
+                                id={`plan-${planName.toLowerCase()}-title`}
+                                className="mt-4 bg-clip-text text-[32px] font-semibold leading-[45px] text-transparent bg-gradient-to-br from-[#52B4DA] to-[#1E3E85]"
+                            >
+                                ${price.toFixed(2)}
+                            </p>
+                            <p className="text-[20px] font-medium leading-[35px] text-[#808191]">
+                                {period}
+                            </p>
+                        </>
+                    ) : (
+                        <>
+                            <p
+                                id={`plan-${planName.toLowerCase()}-title`}
+                                className="bg-clip-text text-[32px] font-semibold leading-[45px] text-[#52B4DA]"
+                            >
+                                {planName}
+                            </p>
+                            <p className="text-[20px] font-medium leading-[35px] text-[#11142D]/40">{period}</p>
+                        </>
+                    )}
+                </div>
+
+                {/* Feature list */}
+                <ul className="flex flex-col gap-5 pt-2" aria-label="Plan features">
+                    {features.map((f) => (
+                        <FeatureLine key={f.name} feature={f} />
                     ))}
                 </ul>
             </div>
@@ -77,13 +93,13 @@ export default function PricingCard({ plan }) {
             {/* CTA */}
             <div className="mt-10 flex flex-1 justify-center">
                 <Button
-                    variant={highlight ? 'solid' : 'outline'}
+                    variant={isPremium ? 'solid' : 'outline'}
                     aria-label="Get Started"
-                    className={`min-w-[180px] flex-1 ${highlight ? 'bg-[linear-gradient(129.98deg,_#52B4DA_-106.35%,_#1E3E85_95.25%)] shadow-[10px_0px_50px_rgba(49,89,211,0.28)] rounded-[24px]' : ''}`}
+                    className={`min-w-[180px] flex-1 ${isPremium ? 'bg-[linear-gradient(129.98deg,_#52B4DA_-106.35%,_#1E3E85_95.25%)] shadow-[10px_0px_50px_rgba(49,89,211,0.28)] rounded-[24px]' : ''}`}
                 >
                     Get Started
                 </Button>
             </div>
-        </div>
+        </article>
     );
 }
