@@ -4,21 +4,17 @@ import FeatureOne from '../sections/FeatureOne'
 import FeatureTwo from '../sections/FeatureTwo'
 import FeatureThree from '../sections/FeatureThree'
 import SignUpAd from '../sections/SignUpAd'
-import Pricing from '../sections/Pricing'
 import CommonQuestions from '../sections/CommonQuestions'
-import Footer from '../sections/Footer'
 
 export default function Home() {
     return (
-        <div className="w-[1440px] mx-auto">
+        <div className="w-full max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-8">
             <Hero />
             <FeatureOne />
             <FeatureTwo />
             <FeatureThree />
             <SignUpAd />
-            <Pricing />
             <CommonQuestions />
-            <Footer />
         </div>
     )
 }

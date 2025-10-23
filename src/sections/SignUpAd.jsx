@@ -1,16 +1,12 @@
 import React from 'react'
 import { ReactComponent as FeatureImage } from "../assets/signup-ad.svg";
+import background from '../assets/signup-ad.svg';
 
 export default function SignUpAd() {
     return (
-        <section className="px-6 md:px-36 py-12 md:py-24">
+        <section className="relative w-full min-h-[60vh] md:min-h-[610px] bg-no-repeat bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url(${background})` }}>
             <div className="max-w-7xl mx-auto grid gap-12 md:grid-cols-2 items-center">
-                {/* Left: illustration */}
-                <div className="w-full">
-                    <FeatureImage className="w-full h-auto" preserveAspectRatio="none" />
-                </div>
-
-                {/* Right: text block + CTA — styled to match Figma */}
+                {/* CTA */}
                 <div className="relative flex flex-col justify-center">
                     <span className="text-[16px] leading-[30px] font-semibold tracking-[1px] text-[#1E3E85]">
                         Are you ready?
