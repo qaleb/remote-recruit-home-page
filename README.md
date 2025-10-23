@@ -1,70 +1,168 @@
-# Getting Started with Create React App
+<div align="center">
+	<h1>Remote Recruit Home Page</h1>
+	<p><strong>Responsive landing page built with React 19 and Tailwind CSS 3.</strong></p>
+	<p><a href="https://remote-recruit.vercel.app/" target="_blank">Live Demo</a></p>
+	<p>
+		<a href="#getting-started">Getting Started</a> •
+		<a href="#features">Features</a> •
+		<a href="#tech-stack">Tech Stack</a> •
+		<a href="#project-structure">Project Structure</a> •
+		<a href="#tailwind-setup">Tailwind Setup</a> •
+		<a href="#scripts">Scripts</a> •
+		<a href="#testing">Testing</a>
+	</p>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+The Remote Recruit Home Page is a single-page React application showcasing product value propositions, pricing plans, FAQs, and conversion-focused hero and signup sections. It emphasizes fast iteration, utility-first styling with Tailwind CSS, and accessibility-friendly components.
 
-## Available Scripts
+## Features
+- Hero section with clear CTA
+- Modular feature highlight components (`FeatureOne`, `FeatureTwo`, `FeatureThree`)
+- Pricing plans with reusable `PricingCard`
+- FAQ / Common Questions accordion section
+- Signup advertisement banner
+- Shared layout footer
+- Scroll-to-top utility button
+- Responsive typography and spacing via Tailwind
+- Progressive scroll-based reveal animations (fade, slide, scale) with IntersectionObserver
 
-In the project directory, you can run:
+## Tech Stack
+- React 19
+- Tailwind CSS 3 (utility-first styling)
+- PostCSS + Autoprefixer (build pipeline)
+- Testing Library (unit/component tests)
+- Web Vitals (performance metrics)
 
-### `npm start`
+## Getting Started
+### Prerequisites
+Ensure you have: 
+- Node.js >= 18.x (recommended LTS)
+- npm >= 9.x
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation
+```bash
+git clone <repo-url>
+cd remote-recruit-home-page
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Development Server
+```bash
+npm start
+```
+Visit http://localhost:3000. The server reloads on file changes.
 
-### `npm test`
+### Production Build
+```bash
+npm run build
+```
+Outputs optimized assets to `build/`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Structure
+```
+remote-recruit-home-page/
+├─ public/
+│  ├─ index.html
+│  └─ ...
+├─ src/
+│  ├─ pages/
+│  │  └─ Home.jsx
+│  ├─ components/
+│  │  ├─ home-sections/
+│  │  │  ├─ Hero.jsx
+│  │  │  ├─ FeatureOne.jsx
+│  │  │  ├─ FeatureTwo.jsx
+│  │  │  ├─ FeatureThree.jsx
+│  │  │  ├─ Pricing.jsx
+│  │  │  ├─ PricingCard.jsx
+│  │  │  ├─ SignUpAd.jsx
+│  │  │  └─ CommonQuestions.jsx
+│  │  ├─ layout/ Footer.jsx
+│  │  └─ ui/ (Badge, Button, ScrollToTop)
+│  ├─ data/ (pricingPlans.js, questionsAnswers.js)
+│  ├─ index.js / App.js
+│  ├─ index.css (Tailwind entry + font imports)
+│  └─ setupTests.js
+├─ tailwind.config.js
+├─ postcss.config.js
+└─ package.json
+```
 
-### `npm run build`
+## Tailwind Setup
+Initialization steps performed:
+1. Created app: `npx create-react-app web-developer-technical-exam` (renamed project in `package.json` to `remote-recruit-home-page`)
+2. Installed build tooling: `npm install -D tailwindcss@3 postcss autoprefixer`
+3. Generated config: `npx tailwindcss init -p` (produced `tailwind.config.js` and `postcss.config.js`)
+4. Added Tailwind directives in `src/index.css`:
+	 ```css
+	 @tailwind base;
+	 @tailwind components;
+	 @tailwind utilities;
+	 ```
+5. Configured `content` paths in `tailwind.config.js` to purge unused styles.
+6. Extended font family to use Poppins.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Scripts
+| Command | Purpose |
+|---------|---------|
+| `npm start` | Start dev server on port 3000 |
+| `npm test` | Run tests in watch mode |
+| `npm run build` | Create production build in `build/` |
+| `npm run eject` | Copy build tooling locally (irreversible) |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Deployment
+The production build in `build/` can be deployed to any static hosting provider (Netlify, Vercel, GitHub Pages, S3 + CloudFront). Ensure you run `npm run build` before deploying.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Animations
+The project includes a lightweight, accessible scroll reveal system implemented in `src/components/ui/Reveal.jsx`.
 
-### `npm run eject`
+### How It Works
+`Reveal` uses the native `IntersectionObserver` API to detect when an element enters the viewport and applies Tailwind utility classes for animated transitions. Motion is skipped automatically when the user has `prefers-reduced-motion: reduce` enabled.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Props
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | element/component | `div` | Semantic wrapper element |
+| `variant` | string | `fade` | Animation style: `fade`, `slide-up`, `slide-left`, `slide-right`, `scale-in` |
+| `delay` | number (ms) | `0` | Delay before starting animation once visible |
+| `duration` | number (ms) | `600` | Transition duration |
+| `threshold` | number | `0.2` | Intersection threshold |
+| `triggerOnce` | boolean | `true` | If `false`, animation will re-trigger when leaving/entering viewport |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Usage Example
+```jsx
+import Reveal from '@/components/ui/Reveal';
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+export function ExampleSection() {
+	return (
+		<section>
+			<Reveal as="h2" variant="slide-up" delay={100} className="text-3xl font-bold">Title</Reveal>
+			<Reveal as="p" variant="fade" delay={250} className="mt-4 text-gray-600">Description text...</Reveal>
+		</section>
+	);
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Accessibility
+- Honors `prefers-reduced-motion`
+- Avoids hidden content being focusable prematurely (elements are only visually transformed, not removed from layout)
+- Uses semantic `as` prop for correct heading hierarchy
 
-## Learn More
+### Performance Considerations
+- Small footprint (no external animation library)
+- Batches observer usage per element (each element self-observes; could be centralized if scaling further)
+- Uses `will-change: transform` briefly to hint GPU acceleration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Extending Variants
+Add a new entry to `variantClassMap` in `Reveal.jsx` with `hidden` and `visible` Tailwind classes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+const variantClassMap = {
+	// existing variants...
+	'flip-up': { hidden: 'opacity-0 rotate-x-12', visible: 'opacity-100 rotate-x-0' }
+};
+```
 
-### Code Splitting
+Then pass `variant="flip-up"` to `Reveal`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
