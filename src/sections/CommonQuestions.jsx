@@ -1,4 +1,5 @@
 import React from 'react'
+import questions from '../data/questionsAnswers'
 
 export default function CommonQuestions() {
     return (
@@ -8,33 +9,17 @@ export default function CommonQuestions() {
                     Common Questions
                 </h2>
 
-                <div className="mt-10 grid gap-8 max-w-3xl">
-                    <div>
-                        <h3 className="text-[19px] leading-[35px] font-medium text-[#11142D]">
-                            Do I have to sign a long-term contract?
-                        </h3>
-                        <p className="mt-3 text-[19px] leading-[35px] text-[#6D6E7A]">
-                            Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui. Selvage jean shorts 90's, Vice American Apparel try-hard food truck Shoreditch fap lomo Wes Anderson. Art party
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 className="text-[19px] leading-[35px] font-medium text-[#11142D]">
-                            Can I pay for a whole year?
-                        </h3>
-                        <p className="mt-3 text-[19px] leading-[35px] text-[#6D6E7A]">
-                            Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui. Selvage jean shorts 90's, Vice American Apparel try-hard food truck Shoreditch fap lomo Wes Anderson. Art party
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 className="text-[19px] leading-[35px] font-medium text-[#11142D]">
-                            What if I need help?
-                        </h3>
-                        <p className="mt-3 text-[19px] leading-[35px] text-[#6D6E7A]">
-                            Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui. Selvage jean shorts 90's, Vice American Apparel try-hard food truck Shoreditch fap lomo Wes Anderson. Art party
-                        </p>
-                    </div>
+                <div className="mt-10 grid gap-8">
+                    {questions.map((q, idx) => (
+                        <div key={idx} className="group">
+                            <h3 className="text-[19px] leading-[35px] font-medium text-[#11142D]">
+                                {q.question}
+                            </h3>
+                            <p className="mt-3 text-[19px] leading-[35px] text-[#6D6E7A]">
+                                {q.answer}
+                            </p>
+                        </div>
+                    ))}
                 </div>
 
                 <div className="mt-8">

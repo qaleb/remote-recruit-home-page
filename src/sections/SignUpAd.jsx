@@ -1,13 +1,18 @@
 import React from 'react'
-import { ReactComponent as FeatureImage } from "../assets/signup-ad.svg";
 import background from '../assets/signup-ad.svg';
 
 export default function SignUpAd() {
     return (
-        <section className="relative w-full min-h-[60vh] md:min-h-[610px] bg-no-repeat bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url(${background})` }}>
-            <div className="max-w-7xl mx-auto grid gap-12 md:grid-cols-2 items-center">
-                {/* CTA */}
-                <div className="relative flex flex-col justify-center">
+        <section
+            className="relative min-h-screen bg-no-repeat bg-cover bg-right lg:bg-center flex"
+            style={{
+                backgroundImage: `url(${background})`,
+            }}
+        >
+            {/* CTA */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center">
+                <div />
+                <div className="flex flex-col max-w-[390px] justify-center mx-auto lg:mx-0 py-24 lg:py-0">
                     <span className="text-[16px] leading-[30px] font-semibold tracking-[1px] text-[#1E3E85]">
                         Are you ready?
                     </span>

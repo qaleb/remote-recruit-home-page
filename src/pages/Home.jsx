@@ -8,13 +8,21 @@ import CommonQuestions from '../sections/CommonQuestions'
 
 export default function Home() {
     return (
-        <div className="w-full max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-8">
+        <>
+            {/* Full-bleed hero section */}
             <Hero />
-            <FeatureOne />
-            <FeatureTwo />
-            <FeatureThree />
+            {/* Constrained feature sections */}
+            <div className="w-full max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-8">
+                <FeatureOne />
+                <FeatureTwo />
+                <FeatureThree />
+            </div>
+            {/* Full-bleed sign up ad section */}
             <SignUpAd />
-            <CommonQuestions />
-        </div>
+            {/* Return to constrained layout for FAQs */}
+            <div className="w-full max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-8">
+                <CommonQuestions />
+            </div>
+        </>
     )
 }
