@@ -18,8 +18,12 @@ export default function CommonQuestions() {
                     ))}
                 </div>
                 <Reveal variant="scale-in" delay={questions.length * 100 + 100} className="mt-8">
-                    <a href="#more-questions" role="button" className="inline-flex items-center px-6 py-3 border-2 rounded-[16px] border-[rgba(83,180,218,0.695577)] text-[16px] font-semibold text-[#1E3E85]">
-                        More Questions
+                    <a
+                        href="#more-questions"
+                        role="button"
+                        className="group inline-flex items-center px-6 py-3 border-2 rounded-[16px] border-[rgba(83,180,218,0.695577)] text-[16px] font-semibold text-[#1E3E85] transition-transform transform hover:scale-[1.03] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#52B4DA]"
+                    >
+                        <span className="transition-colors duration-200 group-hover:text-[#08345A]">More Questions</span>
                     </a>
                 </Reveal>
             </div>

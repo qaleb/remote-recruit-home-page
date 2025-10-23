@@ -79,7 +79,7 @@ remote-recruit-home-page/
 │  │  │  ├─ SignUpAd.jsx
 │  │  │  └─ CommonQuestions.jsx
 │  │  ├─ layout/ Footer.jsx
-│  │  └─ ui/ (Badge, Button, ScrollToTop)
+│  │  └─ ui/ (Badge, Button, Reveal, ScrollToTop)
 │  ├─ data/ (pricingPlans.js, questionsAnswers.js)
 │  ├─ index.js / App.js
 │  ├─ index.css (Tailwind entry + font imports)

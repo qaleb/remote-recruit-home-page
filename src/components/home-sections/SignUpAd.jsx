@@ -24,14 +24,19 @@ export default function SignUpAd() {
                         Click Below to get set up super quickly and find help now!
                     </Reveal>
                     <Reveal variant="scale-in" delay={360} className="mt-8">
-                        <a href="#get-started" role="button" aria-label="Get started" className="inline-flex items-center w-[180px] h-[61px] rounded-[40px] bg-[#52B4DA] bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#52B4DA]">
-                            <span className="flex items-center justify-center ml-4 w-10 h-10 rounded-full bg-[#52B4DA]">
+                        <a
+                            href="#get-started"
+                            role="button"
+                            aria-label="Get started"
+                            className="group inline-flex items-center w-[180px] h-[61px] rounded-[40px] bg-[#52B4DA] bg-opacity-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#52B4DA] transition-transform transform hover:scale-[1.03] focus:scale-[1.03]"
+                        >
+                            <span className="flex items-center justify-center ml-4 w-10 h-10 rounded-full bg-[#52B4DA] transition-colors duration-300 group-hover:bg-[#1289b8]">
                                 <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path d="M1 6h14" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M10 1l6 5-6 5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </span>
-                            <span className="ml-4 font-medium text-[16px] text-[#1E3E85]">Get Started</span>
+                            <span className="ml-4 font-medium text-[16px] text-[#1E3E85] transition-colors duration-300 group-hover:text-[#08345A]">Get Started</span>
                         </a>
                     </Reveal>
                 </div>
